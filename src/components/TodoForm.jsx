@@ -7,7 +7,10 @@ function TodoForm() {
 
   const add = (e) => {
     e.preventDefault();
-    if (!todo) return;
+    if (!todo.trim()) {
+      alert("Please enter a value");
+      return;
+    }
     addTodo({
       title: todo,
       completed: false,
@@ -16,16 +19,18 @@ function TodoForm() {
   };
 
   return (
-    <form onSubmit={add} className="flex">
+    <form
+      onSubmit={add}
+      className="flex sm:flex-row flex-col items-center justify-center gap-3 mt-10"
+    >
       <input
         type="text"
         placeholder="Write Todo..."
-        className="w-full border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white/20 py-1.5 text-3xl hover:bg-white/30"
+        className="w-full border border-black/12 rounded-lg px-3 outline-none duration-150 bg-white/20 py-2 text-3xl hover:bg-white/30"
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
       />
-
-      <button className="relative z-0 rounded bg-pink-500 px-10 py-3 transition-[all_0.3s_ease] after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-0 after:rounded after:bg-pink-700 after:transition-[all_0.3s_ease]  hover:after:w-full ml-2 text-3xl">
+      <button className="relative z-0 rounded bg-pink-500 px-10 py-3 transition-[all_0.3s_ease] after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-0 after:rounded after:bg-pink-700 after:transition-[all_0.3s_ease] hover:after:w-full ml-2 text-3xl">
         Add
       </button>
     </form>
